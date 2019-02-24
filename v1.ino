@@ -9,32 +9,32 @@ Servo bottomServo;
 #define S3 5
 #define sensorOut 6
 
-#define rInfGreen 260
-#define rSupGreen 300
-#define gInfGreen 290
+#define rInfGreen 220
+#define rSupGreen 330
+#define gInfGreen 270
 #define gSupGreen 330
-#define bInfGreen 360
-#define bSupGreen 410
+#define bInfGreen 320
+#define bSupGreen 430
 
 #define rInfYellow 150
-#define rSupYellow 200
+#define rSupYellow 210
 #define gInfYellow 200
-#define gSupYellow 260
+#define gSupYellow 280
 #define bInfYellow 250
-#define bSupYellow 340
+#define bSupYellow 350
 
-#define rInfPurple 330
-#define rSupPurple 380
-#define gInfPurple 520
-#define gSupPurple 560
-#define bInfPurple 440
-#define bSupPurple 500
+#define rInfPurple 250
+#define rSupPurple 390
+#define gInfPurple 380
+#define gSupPurple 590
+#define bInfPurple 340
+#define bSupPurple 520
 
 #define rInfOrange 160
 #define rSupOrange 220
 #define gInfOrange 340
-#define gSupOrange 410
-#define bInfOrange 340
+#define gSupOrange 400
+#define bInfOrange 320
 #define bSupOrange 400
 
 int frequency = 0;
@@ -72,23 +72,32 @@ void loop() {
   do {
     color = readColor();
     Serial.println(color);
-  }while(1);
+  }while(color == 0);
   delay (20);
 
   moveSlide(color);
   delay(300);
   
-  for(int i = 50; i > 25; i--) {
+  for(int i = 50; i > 23; i--) {
     topServo.write(i);
     delay(2);
   } 
   delay(200);
   
-  for(int i = 25; i < 100; i++) {
+  for(int i = 23; i < 100; i++) {
     topServo.write(i);
     delay(2);
   }
   delay(200);
+
+  /*moveSlide(1);
+  delay(300);
+  moveSlide(2);
+  delay(300);
+  moveSlide(3);
+  delay(300);
+  moveSlide(4);
+  delay(300);*/
 }
 // Custom Function - readColor()
 int readColor() {
@@ -151,7 +160,7 @@ void moveSlide(int color) {
   switch(color) {
     case 1:
       Serial.println("Green");
-      currentSlidePosition = 5;
+      currentSlidePosition = 10;
       break;
     case 2:
       Serial.println("Yellow");
@@ -159,7 +168,7 @@ void moveSlide(int color) {
       break;
     case 3:
       Serial.println("Purple");
-      currentSlidePosition = 60;
+      currentSlidePosition = 65;
       break;
     case 4:
       Serial.println("Orange");
