@@ -37,6 +37,10 @@ Servo bottomServo;
 #define bInfOrange 320
 #define bSupOrange 400
 
+#define servoTakeSkittles 100
+#define servoReadColor 50
+#define servoReleaseSkittles 23
+
 int frequency = 0;
 int color=0;
 int lastSlidePosition = 65;
@@ -60,10 +64,10 @@ void setup() {
 void loop() {
 
   color = 0;
-  topServo.write(100);
+  topServo.write(servoTakeSkittles);
   delay(500);
   
-  for(int i = 100; i > 50; i--) {
+  for(int i = servoTakeSkittles; i > servoReadColor; i--) {
     topServo.write(i);
     delay(2);
   }
@@ -78,13 +82,13 @@ void loop() {
   moveSlide(color);
   delay(300);
   
-  for(int i = 50; i > 23; i--) {
+  for(int i = servoReadColor; i > servoReleaseSkittles; i--) {
     topServo.write(i);
     delay(2);
   } 
   delay(200);
   
-  for(int i = 23; i < 100; i++) {
+  for(int i = servoReleaseSkittles; i < servoTakeSkittles; i++) {
     topServo.write(i);
     delay(2);
   }
